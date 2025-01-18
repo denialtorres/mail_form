@@ -31,12 +31,12 @@ class MailFormTest < ActiveSupport::TestCase
 
   test "sample mail can ask if an attribute is present or not" do
     sample = SampleMail.new
-    assert !sample.name?
+    assert_not sample.name?
 
     sample.name = "User"
     assert sample.name?
 
     sample.email = ""
-    assert !sample.email?
+    assert_not sample.email?
   end
 end
