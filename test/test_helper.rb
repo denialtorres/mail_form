@@ -12,3 +12,12 @@ if ActiveSupport::TestCase.respond_to?(:fixture_paths=)
   ActiveSupport::TestCase.file_fixture_path = File.expand_path("fixtures", __dir__) + "/files"
   ActiveSupport::TestCase.fixtures :all
 end
+
+require "capybara"
+require "capybara/rails"
+
+# Define a bare test case to use with Capybara
+class ActiveSupport::IntegrationCase < ActiveSupport::TestCase
+  include Capybara::DSL
+  include Rails.application.routes.url_helpers
+end
