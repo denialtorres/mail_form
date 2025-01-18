@@ -1,5 +1,9 @@
 module MailForm
   class Base
+    # read more about this
+    class_attribute :attribute_names
+    self.attribute_names = []
+
     include ActiveModel::AttributeMethods # 1) attribute methds behavior
     include ActiveModel::Conversion
 
@@ -16,10 +20,20 @@ module MailForm
 
       # 3) ask to define the prefix methods for the given attributes names
       define_attribute_methods(names)
+
+      self.attribute_names += names
     end
 
     def persisted?
       false
+    end
+
+    def deliver
+      if valid?
+        MailForm::Notifier.contact(self).deliver
+      else
+        false
+      end
     end
 
     protected
