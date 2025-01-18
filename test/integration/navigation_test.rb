@@ -18,8 +18,8 @@ class NavigationTest < ActiveSupport::IntegrationCase
     assert_equal 1, ActionMailer::Base.deliveries.size
     mail = ActionMailer::Base.deliveries.last
 
-    assert_equal ["john.doe@example.com"], mail.from
-    assert_equal ["recipient@example.com"], mail.to
+    assert_equal [ "john.doe@example.com" ], mail.from
+    assert_equal [ "recipient@example.com" ], mail.to
     assert_match "Message: MailForm rocks!", mail.body.encoded
   end
 end
