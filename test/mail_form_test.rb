@@ -63,4 +63,10 @@ class MailFormTest < ActiveSupport::TestCase
     assert_not sample.valid?
     assert_equal [ "must be blank" ], sample.errors[:nickname]
   end
+
+  test "provides before and after deliver hooks" do
+    sample = SampleMail.new(email: "user@example.com")
+    sample.deliver
+    assert_equal [:before, :after], sample.evaluated_callbacks
+  end
 end
