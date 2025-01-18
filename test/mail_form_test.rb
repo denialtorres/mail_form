@@ -67,6 +67,6 @@ class MailFormTest < ActiveSupport::TestCase
   test "provides before and after deliver hooks" do
     sample = SampleMail.new(email: "user@example.com")
     sample.deliver
-    assert_equal [:before, :after], sample.evaluated_callbacks
+    assert_equal [ :before, :after ], sample.evaluated_callbacks
   end
 end

@@ -4,14 +4,14 @@ module MailForm
     class_attribute :attribute_names
     self.attribute_names = []
 
+    include ActiveModel::Model
     include ActiveModel::AttributeMethods # 1) attribute methds behavior
-    include ActiveModel::Conversion
-
-    extend ActiveModel::Naming
-    extend ActiveModel::Translation
-    extend ActiveModel::Callbacks # << add callbacks behavior
-
-    include ActiveModel::Validations
+    # include ActiveModel::Conversion
+    # extend ActiveModel::Naming
+    # extend ActiveModel::Translation
+    # extend ActiveModel::Callbacks # << add callbacks behavior
+    #
+    # include ActiveModel::Validations
 
     attribute_method_prefix "clear_" # 2) clear_ is attribute prefix
     attribute_method_suffix "?" # 1) add the attribute suffix
